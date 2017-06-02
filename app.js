@@ -115,18 +115,19 @@ class Ant extends RectangularObject {
           // move along trail
           this.velocity = nestToTrail
         } else {
-          // move to trail; or random if at end
           let thisToTrail = trail.pos.sub(this.pos).norm()
           let angle = thisToTrail.angle(nestToTrail)
           if (angle > Math.PI * 0.8 && angle < Math.PI * 1.2) {
+            // trail leads back home
             this.velocity = nestToTrail
           } else {
+            // move closer to trail
             this.velocity = thisToTrail
           }
         }
       } else {
         if (this.pos.distance(nest.pos) > 333) {
-          // to far from home -> go somewhere random
+          // too far from home -> go somewhere random
           this.velocity = randomPos().sub(this.pos).norm()
         }
       }
